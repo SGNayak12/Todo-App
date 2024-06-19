@@ -1,0 +1,8 @@
+#Nav-bar {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 1px solid black;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
