@@ -1,0 +1,25 @@
+#inputTodo {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+
+  height: 35px;
+  width: 800px;
+  border-radius: 10px;
+  flex-direction: row;
+  margin-top: 350px;
+
+  border: 2px solid black;
+}
+#inputTodo input {
+  border: none;
+  width: 00px;
+}
+
+button {
+  width: 100px;
+  height: 30px;
+  border-radius: 15px;
+  border: 2px solid black;
+  background-color: none;
+}

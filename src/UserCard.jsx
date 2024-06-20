@@ -1,4 +1,4 @@
-import "./usercard.css";
+import "./App.css";
 function UserCard() {
   return (
     <>

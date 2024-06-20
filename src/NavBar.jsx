@@ -1,5 +1,5 @@
 import UserCard from "./UserCard";
-import "./NavBar.css";
+import "./App.css";
 
 function NavBar() {
   return (
