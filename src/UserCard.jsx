@@ -1,10 +1,10 @@
 import "./App.css";
-function UserCard() {
+function UserCard(props) {
   return (
     <>
       <div id="UserCard">
         <img src="./profile.png" alt="" />
-        <h3>SUHAS G NAYAK</h3>
+        <h3>{props.username}</h3>
       </div>
     </>
   );
