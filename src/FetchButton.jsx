@@ -9,11 +9,9 @@ const FetchButton = () => {
   const handleClick = async () => {
     try {
       const response = await fetch("http://localhost:3000/showTodo");
-
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
       const result = await response.json(); // Assuming the response is JSON
       setData(result);
       console.log(result);
@@ -25,7 +23,9 @@ const FetchButton = () => {
     <>
       <button
         style={{
-          marginTop: "200px",
+          //   marginTop: "200px",
+          marginBottom: "0px",
+
           marginLeft: "100px",
           width: 120,
           height: 60,
@@ -50,7 +50,7 @@ const FetchButton = () => {
               alignItems: "center",
               justifyContent: "space-between",
               flexDirection: "row",
-              backgroundColor: "red",
+              backgroundColor: "grey",
               borderRadius: 10,
               borderStyle: "solid",
               borderWidth: "2px",

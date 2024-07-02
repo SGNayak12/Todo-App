@@ -1,21 +1,22 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import NavBar from "./NavBar";
-import FetchButton from "./FetchButton";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Signup from "./Signup";
+import Signin from "./Signin";
 
 function App(props) {
   return (
     <>
-      <NavBar username={"Suhas G Nayak"}></NavBar>
-
-      <div
-        style={{
-          marginTop: "20px",
-        }}
-        id="mainBody"
-      >
-        <FetchButton />
-      </div>
+      <NavBar />
+      <Router>
+        <Routes>
+          <Route path="/" />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
+        </Routes>
+      </Router>
     </>
   );
 }
