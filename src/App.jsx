@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import NavBar from "./NavBar";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from "./Signup";
 import Signin from "./Signin";
@@ -9,8 +8,8 @@ import Signin from "./Signin";
 function App(props) {
   return (
     <>
-      <NavBar />
       <Router>
+        <NavBar />
         <Routes>
           <Route path="/" />
           <Route path="/signup" element={<Signup />} />
