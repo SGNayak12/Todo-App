@@ -1,9 +1,25 @@
 import "./App.css";
 import Button from "@mui/material/Button";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 function NavBar() {
+  const [username, setusername] = useState(null);
   const navigate = useNavigate();
+  useEffect(() => {
+    fetch("https://localhost:3000/admin/profile", {
+      method: "GET",
+      headers: {},
+    })
+      .then((res) => {
+        res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setusername(data.username);
+      });
+  }, []);
+
   return (
     <>
       <div id="Nav-bar">
@@ -12,7 +28,6 @@ function NavBar() {
           <Button
             onClick={() => {
               navigate("/signin");
-              console.log("Button clicked");
             }}
             variant="contained"
           >
@@ -21,7 +36,6 @@ function NavBar() {
           <Button
             onClick={() => {
               navigate("/signup");
-              console.log("Button clicked");
             }}
             variant="contained"
           >

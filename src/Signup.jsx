@@ -4,6 +4,7 @@ import { useState } from "react";
 function Signup() {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
+
   return (
     <>
       <div
@@ -16,7 +17,6 @@ function Signup() {
       >
         <div
           style={{
-            // backgroundColor: "gray",
             width: 300,
             margintop: "10px",
             border: "2px solid black",
@@ -29,6 +29,7 @@ function Signup() {
             padding: "5px",
           }}
         >
+          {/* {username} */}
           <TextField
             onChange={(e) => {
               setusername(e.target.value);
@@ -40,6 +41,7 @@ function Signup() {
             label="username"
             variant="outlined"
           />
+
           <TextField
             onChange={(e) => {
               setpassword(e.target.value);
@@ -64,6 +66,7 @@ function Signup() {
                 }),
                 headers: {
                   "Content-type": "application/json",
+                  // authorization: "bearer" + localStorage.getItem("token"),
                 },
               })
                 .then((res) => {
