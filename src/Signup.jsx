@@ -60,14 +60,15 @@ function Signup() {
               const password = document.getElementById("password").value;
               fetch("http://localhost:3000/admin/signup", {
                 method: "POST",
+
+                headers: {
+                  "Content-type": "application/json",
+                  // authorization: "Bearer" + localStorage.getItem("token"),
+                },
                 body: JSON.stringify({
                   username: username,
                   password: password,
                 }),
-                headers: {
-                  "Content-type": "application/json",
-                  // authorization: "bearer" + localStorage.getItem("token"),
-                },
               })
                 .then((res) => {
                   return res.json();
