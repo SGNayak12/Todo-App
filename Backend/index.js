@@ -1,7 +1,7 @@
 const express=require("express");
 const fs=require("fs")
 const app=express();
-const PORT=4000;
+const PORT=3000;
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
