@@ -3,26 +3,47 @@ const fs=require("fs")
 const app=express();
 const PORT=3000;
 const bodyParser = require('body-parser');
+const cookieParser = require("cookie-parser");
+const bcrypt=require('bcrypt');
+const saltRounds=10;
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 let TODOS = [];
-
-// Read data from file, or initialize to empty array if file does not exist.
 try {
     TODOS= JSON.parse(fs.readFileSync("todo.json", "utf8"));
 } catch {
   TODOS= [];
-  
 }
+app.get("/setcookie",(req,res)=>{
+    res.cookie('token','djfnjdn');
+    res.send("Set");
+})
 app.get("/",(req,res)=>{
     res.send("Restarted")
+});
+app.get("/bcrypt",(req,res)=>{
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+    bcrypt.hash('SuhasGNayak', salt, function(err, hash) {
+        console.log(hash);
+    });
+});
+res.send("Bcrypted");
+});
+
+app.get("/compare",(req,res)=>{
+    bcrypt.compare('SuhasGNayak', "$2b$10$vZeBrjkhLQx3dF9XTCvTsOidR70zLCQ/EZ66pN.SILTGppimhPsvS", function(err, result) {
+    console.log(result);
+    res.send("Confirmed");
+});
 })
+
 app.get('/todos', (req, res) => {
   res.json(TODOS);
 });
 
 app.get('/todos/:id', (req, res) => {
-  const todo = todos.find(t => t.id === parseInt(req.params.id));
+  const todo = TODOS.find(t => t.id === parseInt(req.params.id));
   if (!todo) {
     res.status(404).send();
   } else {
