@@ -15,7 +15,7 @@ try {
   
 }
 app.get("/",(req,res)=>{
-    res.send("Welocme")
+    res.send("Restarted")
 })
 app.get('/todos', (req, res) => {
   res.json(TODOS);
