@@ -5,9 +5,23 @@ const PORT=3000;
 const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser");
 const bcrypt=require('bcrypt');
+const mongoose=require("mongoose");
+const {Schema}=mongoose;
 const saltRounds=10;
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+mongoose.connect("mongodb://127.0.0.1:27017/TodoDB")
+
+const user=new Schema({
+  username:String,
+  password:String,
+
+})
+
+const userModel=mongoose.model("userschema",user);
+
+
 
 let TODOS = [];
 try {
@@ -15,29 +29,10 @@ try {
 } catch {
   TODOS= [];
 }
-app.get("/setcookie",(req,res)=>{
-    res.cookie('token','djfnjdn');
-    res.send("Set");
-})
+
 app.get("/",(req,res)=>{
     res.send("Restarted")
 });
-app.get("/bcrypt",(req,res)=>{
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-    bcrypt.hash('SuhasGNayak', salt, function(err, hash) {
-        console.log(hash);
-    });
-});
-res.send("Bcrypted");
-});
-
-app.get("/compare",(req,res)=>{
-    bcrypt.compare('SuhasGNayak', "$2b$10$vZeBrjkhLQx3dF9XTCvTsOidR70zLCQ/EZ66pN.SILTGppimhPsvS", function(err, result) {
-    console.log(result);
-    res.send("Confirmed");
-});
-})
-
 app.get('/todos', (req, res) => {
   res.json(TODOS);
 });
@@ -73,22 +68,22 @@ app.post('/createTodo', (req, res) => {
 });
 
 app.put('/todos/:id', (req, res) => {
-  const todoIndex = todos.findIndex(t => t.id === parseInt(req.params.id));
+  const todoIndex = TODOS.findIndex(t => t.id === parseInt(req.params.id));
   if (todoIndex === -1) {
     res.status(404).send();
   } else {
-    todos[todoIndex].title = req.body.title;
-    todos[todoIndex].description = req.body.description;
-    res.json(todos[todoIndex]);
+    TODOS[todoIndex].title = req.body.title;
+    TODOS[todoIndex].description = req.body.description;
+    res.json(TODOS[todoIndex]);
   }
 });
 
 app.delete('/todos/:id', (req, res) => {
-  const todoIndex = todos.findIndex(t => t.id === parseInt(req.params.id));
+  const todoIndex = TODOS.findIndex(t => t.id === parseInt(req.params.id));
   if (todoIndex === -1) {
     res.status(404).send();
   } else {
-    todos.splice(todoIndex, 1);
+    TODOS.splice(todoIndex, 1);
     res.status(200).send();
   }
 });
