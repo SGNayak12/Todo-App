@@ -18,10 +18,7 @@ const user=new Schema({
   password:String,
 
 })
-
 const userModel=mongoose.model("userschema",user);
-
-
 
 let TODOS = [];
 try {
@@ -88,10 +85,6 @@ app.delete('/todos/:id', (req, res) => {
   }
 });
 
-// for all other routes, return 404
-// app.use((req, res, next) => {
-//   res.status(404).send();
-// });
 
 module.exports = app;
 
